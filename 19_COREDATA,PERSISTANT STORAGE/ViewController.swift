@@ -115,7 +115,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         context.delete(items[indexPath.row])
         items.remove(at:indexPath.row)
         
-       // items[indexPath.row].done = !items[indexPath.row].done
+        items[indexPath.row].done = !items[indexPath.row].done
         
         saveData()
         
