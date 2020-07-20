@@ -197,6 +197,7 @@ extension ViewController : UISearchBarDelegate
 
         request.predicate = predicate
 
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
 
         loadData(with: request)
 
