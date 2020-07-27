@@ -13,6 +13,14 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
    
     var items = [Item]()
     
+    var selectedCategory : Category? {
+        
+        didSet
+        {
+            loadData()
+        }
+    }
+    
     @IBOutlet weak var tables: UITableView!
     
     var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -20,9 +28,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
            super.viewDidLoad()
         
-        loadData()
+       // loadData()
         
-        print(try! FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+        print(selectedCategory?.name)
+        
+       // print(try! FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
           
        }
     
@@ -38,6 +49,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             let item = Item(context:self.context)
             
             item.title = textField.text
+            
+            item.parentCategory = self.selectedCategory
             
             self.items.append(item)
                 
@@ -74,8 +87,22 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     //read data from coreData Model
-    func loadData(with request:NSFetchRequest<Item> = Item.fetchRequest())
+    func loadData(with request:NSFetchRequest<Item> = Item.fetchRequest(),predicate: NSPredicate? = nil)
     {
+        
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!)
+
+
+        if let additonalPredicate = predicate
+        {
+
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,additonalPredicate])
+        }
+        else
+        {
+
+            request.predicate = categoryPredicate
+        }
         do
         {
             
@@ -91,7 +118,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             print("cannot load data from CoreDataModel \(error)")
             
         }
-        tables.reloadData()
+    
+        
+        
+         
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -115,7 +145,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
        // context.delete(items[indexPath.row])
         //items.remove(at:indexPath.row)
         
-        items[indexPath.row].done = !items[indexPath.row].done
+        //items[indexPath.row].done = !items[indexPath.row].done
         
         saveData()
         
@@ -188,18 +218,19 @@ extension ViewController : UISearchBarDelegate
 
         let request : NSFetchRequest<Item> = Item.fetchRequest()
 
+//        print(searchBar.text)
 
         //Following Line which describe when we type in search box search text can be display
        // let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
 
-        let predicate = NSPredicate(format: "title BEGINSWITH[c] %@", searchBar.text!)
-
-
-        request.predicate = predicate
-
+       let predicate = NSPredicate(format: "title BEGINSWITH[c] %@", searchBar.text!)
+//
+//
+        //request.predicate = predicate
+//
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-
-        loadData(with: request)
+//
+       loadData(with: request,predicate:predicate)
 
 }
     

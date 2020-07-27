@@ -181,6 +181,26 @@ class CategoryViewController: UITableViewController {
         return cell
     }
 
+    //MARK:TABLEVIEW Delegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "gotoItem", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let destinationVC = segue.destination as! ItemTableViewController
+        
+        if let indexpath = tableView.indexPathForSelectedRow
+        {
+            
+            
+            destinationVC.selectedCategory = categorys[indexpath.row]
+            
+            
+        }
+    }
    
     
 }

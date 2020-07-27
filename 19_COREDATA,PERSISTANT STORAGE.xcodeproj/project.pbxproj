@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		304200C524CC308B0018330E /* ItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 304200C424CC308A0018330E /* ItemTableViewController.swift */; };
 		30DB89A324C6D0710028F282 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DB89A224C6D0710028F282 /* CategoryViewController.swift */; };
 		30DB89A724C6D5220028F282 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DB89A624C6D5220028F282 /* Main.storyboard */; };
 		30DB89A924C6F5D10028F282 /* trash-circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 30DB89A824C6F5D00028F282 /* trash-circle.png */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		304200C424CC308A0018330E /* ItemTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewController.swift; sourceTree = "<group>"; };
 		30DB89A224C6D0710028F282 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		30DB89A624C6D5220028F282 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		30DB89A824C6F5D00028F282 /* trash-circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trash-circle.png"; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 			children = (
 				30F1B79524BD94720032A84E /* ViewController.swift */,
 				30DB89A224C6D0710028F282 /* CategoryViewController.swift */,
+				304200C424CC308A0018330E /* ItemTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				30F1B79624BD94720032A84E /* ViewController.swift in Sources */,
 				30F1B79C24BD94720032A84E /* _9_COREDATA_PERSISTANT_STORAGE.xcdatamodeld in Sources */,
 				30F1B79224BD94720032A84E /* AppDelegate.swift in Sources */,
+				304200C524CC308B0018330E /* ItemTableViewController.swift in Sources */,
 				30F1B79424BD94720032A84E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
